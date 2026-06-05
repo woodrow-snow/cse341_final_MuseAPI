@@ -17,22 +17,36 @@ const songs = [
  * Get All Songs
  * *********************************************** */
 const getAllSongs = async (req, res) => {
-    res.status(200).json(songs);
+    try {
+        res.status(200).json(songs);
+    } catch (error) {
+        res.status(500).json({
+            message: 'Failed to get songs',
+            error: error.message
+        });
+    }
 };
 
 /* ***********************************************
  * Get Song By Id
  * *********************************************** */
 const getSongById = async (req, res) => {
-    const song = songs.find(song => song.id === req.params.id);
+    try {
+        const song = songs.find(song => song.id === req.params.id);
 
-    if (!song) {
-        return res.status(404).json({
-            message: 'Song not found'
+        if (!song) {
+            return res.status(404).json({
+                message: 'Song not found'
+            });
+        }
+
+        res.status(200).json(song);
+    } catch (error) {
+        res.status(500).json({
+            message: 'Failed to get song',
+            error: error.message
         });
     }
-
-    res.status(200).json(song);
 };
 
 /* ***********************************************
