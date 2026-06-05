@@ -3,15 +3,35 @@
  * *********************************************** */
 const express = require('express');
 const cors = require('cors');
+const swaggerUi = require('swagger-ui-express');
 
-// creating application
+const swaggerSpec = require('./swagger');
+
+/* ***********************************************
+ * creating application
+ * *********************************************** */
 const app = express();
 
 /* ***********************************************
- * required Statements
+ * Middleware
  * *********************************************** */
 app.use(express.json());
 app.use(cors());
+
+/* ***********************************************
+ * Swagger Documentation
+ * *********************************************** */
+app.use(
+    '/api-docs',
+    swaggerUi.serve,
+    swaggerUi.setup(swaggerSpec)
+);
+
+/* ***********************************************
+ * Routes
+ * *********************************************** */
+app.use('/song', require('./routes/songs'));
+app.use('/artist', require('./routes/artists'));
 
 /* ***********************************************
  * Starting server
