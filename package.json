@@ -1,0 +1,26 @@
+{
+  "name": "cse341_final_museapi",
+  "version": "1.0.0",
+  "description": "This is the CSE341 Team 17 Final MuseAPI",
+  "homepage": "https://github.com/woodrow-snow/cse341_final_MuseAPI#readme",
+  "bugs": {
+    "url": "https://github.com/woodrow-snow/cse341_final_MuseAPI/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/woodrow-snow/cse341_final_MuseAPI.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "nodemon": "^3.1.14"
+  }
+}
