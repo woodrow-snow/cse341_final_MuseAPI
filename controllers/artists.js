@@ -11,6 +11,10 @@ const artists = [
     }
 ];
 
+// require statements
+const { artistModel } = require('../model/artist');
+const { ObjectId } = require('mongodb');
+
 /* ***********************************************
  * Get All Artists
  * *********************************************** */
@@ -49,10 +53,36 @@ const getArtistById = async (req, res) => {
     }
 };
 
+const updateArtistById = async (req, res) => {
+    // getting id from params
+    const id = new ObjectId(req.params.id);
+    
+    try {
+        // creating new object based off of req info
+        const updatedArtist = {
+            "name": req.body.name,
+            "songs": req.body.songs,
+            "album": req.body.album,
+            "listeners":req.body.listeners
+        }
+
+        // passing to model to update artist
+        const results = await artistModel.updateArtistById(id, updatedArtist);
+        res.status(200).send(results); 
+
+    } catch (err) {
+        res.status(500).json({
+            message: 'An error has occurred while attempting to update the artist.',
+            error: err.message
+        });
+    }
+}
+
 /* ***********************************************
  * Export Controller Functions
  * *********************************************** */
 module.exports = {
     getAllArtists,
-    getArtistById
+    getArtistById,
+    updateArtistById
 };

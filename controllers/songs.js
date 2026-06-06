@@ -1,3 +1,6 @@
+const { ObjectId } = require('mongodb');
+const { songModel } = require('../model/song');
+
 /* ***********************************************
  * Sample Song Data
  * *********************************************** */
@@ -49,10 +52,39 @@ const getSongById = async (req, res) => {
     }
 };
 
+const updateSongById = async (req, res) => {
+    // getting id from params
+    const id = new ObjectId(req.params.id);
+
+    // attempting to update object in DB
+    try {
+        // creating object with updated information
+        const updatedSong = {
+            name: req.body.name,
+            len_in_sec: req.body.len_in_sec,
+            len_in_min: req.body.len_in_min,
+            artist_id: req.body.artist_id,
+            album_id: req.body.album_id,
+            playlists_in: req.body.playlists_in
+        };
+
+        // passing to model to update in db
+        const results = await songModel.updateSongById(id, updatedSong);
+        res.status(200).send(results);
+
+    } catch (err) {
+        res.status(500).json({
+            message: 'An error occurring while attempting to update the song',
+            error: err.message
+        })
+    }
+}
+
 /* ***********************************************
  * Export Controller Functions
  * *********************************************** */
 module.exports = {
     getAllSongs,
-    getSongById
+    getSongById,
+    updateSongById
 };

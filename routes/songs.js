@@ -34,4 +34,6 @@ router.get('/', songsController.getAllSongs);
  */
 router.get('/:id', songsController.getSongById);
 
+router.put('/:id', songsController.updateSongById)
+
 module.exports = router;
