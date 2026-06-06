@@ -1,3 +1,28 @@
+## testing POST artist route
+post http://localhost:3000/artist
+Content-Type: application/json
+{
+    "name": "test-name",
+    "songs": [
+        {
+            "$oid": "1561651651651"
+        },
+        {
+            "$oid": "1561651651651"
+        }
+    ],
+    "album": [
+        {
+            "$oid": "1561651651651"
+        },
+        {
+            "$oid": "1561651651651"
+        }
+    ],
+    "listeners": 52000000
+}
+###
+
 # testing PUT artist route, no changes are made to the artist, we are only reinserting the name to ensure the put route works
 put http://localhost:3000/artist/661f1a2b3c4d5e6f7a8b9c10
 Content-Type: application/json

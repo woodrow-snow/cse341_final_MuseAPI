@@ -1,3 +1,26 @@
+## testing POST song route
+post http://localhost:3000/song
+{
+    "name": "song-test",
+    "len_in_sec": 99999,
+    "len_in_min": 2,
+    "artist_id": {
+        "$oid": "6a249a0cdee876b0b4e64e8b"
+    },
+    "album_id": {
+        "$oid": "1561651651651"
+    },
+    "playlists_in": [
+        {
+            "$oid": "1561651651651"
+        },
+        {
+            "$oid": "1561651651651"
+        }
+    ]
+}
+###
+
 # testing PUT songs route, no changes are made to the song, we are only reinserting the name to ensure the put route works
 put http://localhost:3000/song/661f1a2b3c4d5e6f7a8b9c01
 Content-Type: application/json
