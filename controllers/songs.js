@@ -68,9 +68,6 @@ const updateSongById = async (req, res) => {
             playlists_in: req.body.playlists_in
         };
 
-        // testing
-        console.log("req.body:\n"+updatedSong);
-
         // passing to model to update in db
         const results = await songModel.updateSongById(id, updatedSong);
         res.status(200).send(results);

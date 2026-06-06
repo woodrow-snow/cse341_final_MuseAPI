@@ -25,9 +25,6 @@ songModel.getSongById = async function (id) {
 songModel.updateSongById = async function (id, updatedSong) {
     const ogSong = await this.getSongById(id);
 
-    // testing
-    console.log("OG:\n" + ogSong);
-
     const results = await getDB().updateOne(
         { _id: id },
         {

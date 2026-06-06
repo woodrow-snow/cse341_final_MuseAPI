@@ -8,4 +8,33 @@ const artistSchema = {
     listeners: Number
 };
 
-module.exports = artistSchema;
+const artistModel = {};
+const mongo = require('../database/database');
+const getDB = () => {
+    return mongo.getDatabase().db().collection('artist');
+};
+
+artistModel.updateArtistById = async function (id, updatedArtist) {
+    // getting og artist informaiton 
+    const ogArtist = this.getArtistById(id);
+
+    const results = await getDB().updateOne(
+        { _id: id },
+        {
+            $set: {
+                "name": updatedArtist.name ?? ogArtist.name,
+                "songs": updatedArtist.songs ?? ogArtist.songs,
+                "album": updatedArtist.album ?? ogArtist.album,
+                "listeners":updatedArtist.listeners ?? ogArtist.listeners 
+            }
+        }
+    );
+
+    return results;
+}
+
+artistModel.getArtistById = async function (id) {
+    return await getDB().findOne({ _id: id});
+}
+
+module.exports = { artistSchema, artistModel };
