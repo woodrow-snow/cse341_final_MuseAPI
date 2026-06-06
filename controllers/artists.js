@@ -53,6 +53,21 @@ const getArtistById = async (req, res) => {
     }
 };
 
+const createArtist = async (req, res) => {
+    try {
+        const newArtist = await artistModel.createArtist(req.body);
+        res.status(201).json({
+            content: newArtist,
+            message: "This data created successfully."
+        });
+    } catch (err) {
+        res.status(500).json({
+            message: 'An error has occurred while attempting to create the artist.',
+            error: err.message
+        });
+    }
+}
+
 const updateArtistById = async (req, res) => {
     // getting id from params
     const id = new ObjectId(req.params.id);
@@ -84,5 +99,6 @@ const updateArtistById = async (req, res) => {
 module.exports = {
     getAllArtists,
     getArtistById,
+    createArtist,
     updateArtistById
 };

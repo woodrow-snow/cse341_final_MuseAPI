@@ -51,6 +51,23 @@ const getSongById = async (req, res) => {
         });
     }
 };
+/* ***********************************************
+ * Post Song
+ * *********************************************** */
+const createSong = async (req, res) => {
+    try {
+        const newSong = await songModel.createSong(req.body);
+        res.status(201).json({
+            content: newSong,
+            message: "This data created successfully."
+        });
+    } catch (err) {
+        res.status(500).json({
+            message: 'An error occurred while attempting to create the song',
+            error: err.message
+        });
+    }
+}
 
 const updateSongById = async (req, res) => {
     // getting id from params
@@ -86,5 +103,6 @@ const updateSongById = async (req, res) => {
 module.exports = {
     getAllSongs,
     getSongById,
+    createSong,
     updateSongById
 };

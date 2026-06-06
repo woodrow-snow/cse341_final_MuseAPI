@@ -14,6 +14,18 @@ const getDB = () => {
     return mongo.getDatabase().db().collection('artist');
 };
 
+
+artistModel.createArtist = async function (artist) {
+
+    const newArtist = await getDB().insertOne({
+        "name": artist.name,
+        "songs": artist.songs,
+        "album": artist.album,
+        "listeners": artist.listeners
+    });
+    return newArtist;
+}
+
 artistModel.updateArtistById = async function (id, updatedArtist) {
     // getting og artist informaiton 
     const ogArtist = this.getArtistById(id);
@@ -25,7 +37,7 @@ artistModel.updateArtistById = async function (id, updatedArtist) {
                 "name": updatedArtist.name ?? ogArtist.name,
                 "songs": updatedArtist.songs ?? ogArtist.songs,
                 "album": updatedArtist.album ?? ogArtist.album,
-                "listeners":updatedArtist.listeners ?? ogArtist.listeners 
+                "listeners": updatedArtist.listeners ?? ogArtist.listeners
             }
         }
     );
@@ -34,7 +46,7 @@ artistModel.updateArtistById = async function (id, updatedArtist) {
 }
 
 artistModel.getArtistById = async function (id) {
-    return await getDB().findOne({ _id: id});
+    return await getDB().findOne({ _id: id });
 }
 
 module.exports = { artistSchema, artistModel };

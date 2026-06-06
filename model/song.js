@@ -22,6 +22,18 @@ songModel.getSongById = async function (id) {
     return await getDB().findOne({ _id: id});
 };
 
+songModel.createSong = async function (song) {
+    const newSong = await getDB().insertOne({
+        name: song.name,
+        len_in_sec: song.len_in_sec,
+        len_in_min: song.len_in_min,
+        artist_id: song.artist_id,
+        album_id: song.album_id,
+        playlists_in: song.playlists_in
+    });
+    return newSong;
+};
+    
 songModel.updateSongById = async function (id, updatedSong) {
     const ogSong = await this.getSongById(id);
 
