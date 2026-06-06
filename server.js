@@ -7,6 +7,8 @@ const swaggerUi = require('swagger-ui-express');
 
 const swaggerSpec = require('./swagger');
 
+const mongodb = require('./database/database');
+
 /* ***********************************************
  * creating application
  * *********************************************** */
@@ -40,4 +42,16 @@ const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
     console.log('API started on: ' + port);
+});
+
+/* ***********************************************
+ * Connecting to the database
+ * *********************************************** */
+mongodb.initDatabase((err, db) => {
+    if (err) {
+        console.error('Failed to connect to the database.');
+        console.error(err);
+    } else {
+        console.log('Database initialized');
+    }
 });
