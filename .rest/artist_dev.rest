@@ -1,0 +1,8 @@
+# testing PUT artist route, no changes are made to the artist, we are only reinserting the name to ensure the put route works
+put http://localhost:3000/artist/661f1a2b3c4d5e6f7a8b9c10
+Content-Type: application/json
+
+{
+    "name": "Queen"
+}
+###
