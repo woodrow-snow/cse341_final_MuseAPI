@@ -1,0 +1,39 @@
+Songs Collection
+{
+  "_id": { "$oid": "661f1a2b3c4d5e6f7a8b9c01" },
+  "name": "Bohemian Rhapsody",
+  "len_in_sec": 354,
+  "len_in_min": 6,
+  "artist_id": { "$oid": "661f1a2b3c4d5e6f7a8b9c10" },
+  "album_id": { "$oid": "661f1a2b3c4d5e6f7a8b9c20" },
+  "playlists_in": [
+    { "$oid": "661f1a2b3c4d5e6f7a8b9c30" },
+    { "$oid": "661f1a2b3c4d5e6f7a8b9c31" }
+  ]
+},
+{
+  "_id": { "$oid": "661f1a2b3c4d5e6f7a8b9c02" },
+  "name": "We Will Rock You",
+  "len_in_sec": 122,
+  "len_in_min": 2,
+  "artist_id": { "$oid": "661f1a2b3c4d5e6f7a8b9c10" },
+  "album_id": { "$oid": "661f1a2b3c4d5e6f7a8b9c20" },
+  "playlists_in": [
+    { "$oid": "661f1a2b3c4d5e6f7a8b9c30" },
+    { "$oid": "661f1a2b3c4d5e6f7a8b9c32" }
+  ]
+},
+
+Artist Collection
+{
+  "_id": { "$oid": "661f1a2b3c4d5e6f7a8b9c10" },
+  "name": "Queen",
+  "songs": [
+    { "$oid": "661f1a2b3c4d5e6f7a8b9c01" },
+    { "$oid": "661f1a2b3c4d5e6f7a8b9c02" }
+  ],
+  "album": [
+    { "$oid": "661f1a2b3c4d5e6f7a8b9c20" }
+  ],
+  "listeners": 52000000
+}
