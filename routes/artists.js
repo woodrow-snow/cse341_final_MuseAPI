@@ -38,5 +38,6 @@ router.post('/', artistsController.createArtist);
 
 router.put('/:id', artistsController.updateArtistById);
 
+router.delete('/:id', artistsController.deleteArtistById);
 
 module.exports = router;
