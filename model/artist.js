@@ -14,6 +14,9 @@ const getDB = () => {
     return mongo.getDatabase().db().collection('artist');
 };
 
+artistModel.getAllArtists = async function () {
+    return await getDB().find().toArray();
+}
 
 artistModel.createArtist = async function (artist) {
 

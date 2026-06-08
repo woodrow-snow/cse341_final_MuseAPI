@@ -1,15 +1,15 @@
 /* ***********************************************
  * Sample Artist Data
  * *********************************************** */
-const artists = [
-    {
-        id: '101',
-        name: 'Ed Sheeran',
-        songs: ['1'],
-        albums: ['201'],
-        listeners: 1000000
-    }
-];
+// const artists = [
+//     {
+//         id: '101',
+//         name: 'Ed Sheeran',
+//         songs: ['1'],
+//         albums: ['201'],
+//         listeners: 1000000
+//     }
+// ];
 
 // require statements
 const { artistModel } = require('../model/artist');
@@ -20,7 +20,8 @@ const { ObjectId } = require('mongodb');
  * *********************************************** */
 const getAllArtists = async (req, res) => {
     try {
-        res.status(200).json(artists);
+        const data = await artistModel.getAllArtists();
+        res.status(200).send(data);
     } catch (error) {
         res.status(500).json({
             message: 'Failed to get artists',
@@ -33,10 +34,9 @@ const getAllArtists = async (req, res) => {
  * Get Artist By Id
  * *********************************************** */
 const getArtistById = async (req, res) => {
+    const id = new ObjectId(req.params.id);
     try {
-        const artist = artists.find(
-            artist => artist.id === req.params.id
-        );
+        const artist = await artistModel.getArtistById(id);
 
         if (!artist) {
             return res.status(404).json({

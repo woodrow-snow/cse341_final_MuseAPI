@@ -18,6 +18,10 @@ const getDB = () => {
     return mongo.getDatabase().db().collection('song');
 };
 
+songModel.getAllSongs = async function () {
+    return await getDB().find().toArray();
+}
+
 songModel.getSongById = async function (id) {
     return await getDB().findOne({ _id: id});
 };
