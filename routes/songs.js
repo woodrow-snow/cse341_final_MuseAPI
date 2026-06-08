@@ -36,6 +36,8 @@ router.get('/:id', songsController.getSongById);
 
 router.post('/', songsController.createSong);
 
-router.put('/:id', songsController.updateSongById)
+router.put('/:id', songsController.updateSongById);
+
+router.delete('/:id', songsController.deleteSongById);
 
 module.exports = router;

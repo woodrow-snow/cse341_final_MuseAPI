@@ -46,12 +46,17 @@ songModel.updateSongById = async function (id, updatedSong) {
                 len_in_min: updatedSong.len_in_min ?? ogSong.len_in_min,
                 artist_id: updatedSong.artist_id ?? ogSong.artist_id,
                 album_id: updatedSong.album_id ?? ogSong.album_id,
-                playlists_in: updatedSong.playlists_i ?? ogSong.playlists_in
+                playlists_in: updatedSong.playlists_in ?? ogSong.playlists_in
             }
         }
     );
 
     return results;
 };
+
+songModel.deleteSongById = async function (id) {
+    const results = await getDB().deleteOne({ _id: id });
+    return results;
+}
 
 module.exports = { songSchema, songModel};

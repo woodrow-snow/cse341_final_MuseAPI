@@ -98,11 +98,36 @@ const updateSongById = async (req, res) => {
 }
 
 /* ***********************************************
+* Delete Song 
+* *********************************************** */
+const deleteSongById = async (req, res) => {
+    try {
+        // getting id from params
+        const id = new ObjectId(req.params.id);
+
+        // passing to model to delete in db
+        const results = await songModel.deleteSongById(id);
+
+        if (results.deletedCount > 0) {
+            res.status(200).json({ message: 'Song deleted successfully.' });
+        } else {
+            res.status(404).json({ message: 'Song not found.' });
+        }
+    } catch (err) {
+        res.status(500).json({
+            message: 'An error occurred while attempting to delete the song',
+            error: err.message
+        });
+    }
+};
+
+/* ***********************************************
  * Export Controller Functions
  * *********************************************** */
 module.exports = {
     getAllSongs,
     getSongById,
     createSong,
-    updateSongById
+    updateSongById,
+    deleteSongById,
 };

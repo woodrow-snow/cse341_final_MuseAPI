@@ -49,4 +49,11 @@ artistModel.getArtistById = async function (id) {
     return await getDB().findOne({ _id: id });
 }
 
+artistModel.deleteArtistById = async function (id) {
+    const results = await getDB().deleteOne({ _id: id });
+    return results;
+}
+
+
+
 module.exports = { artistSchema, artistModel };
