@@ -50,6 +50,7 @@
  * *********************************************** */
 const express = require('express');
 const router = express.Router();
+const { validate, rules } = require('../middleware/validator');
 
 const artistsController = require('../controllers/artists');
 
@@ -101,7 +102,10 @@ router.get('/:id', artistsController.getArtistById);
  *       500:
  *         description: Artist not created
  */
-router.post('/', artistsController.createArtist);
+router.post('/',
+    rules.artistPOST_VRS(),
+    validate,
+    artistsController.createArtist);
 
 /**
  * @swagger
@@ -125,7 +129,10 @@ router.post('/', artistsController.createArtist);
  *       500:
  *         description: Artist not updated
  */
-router.put('/:id', artistsController.updateArtistById);
+router.put('/:id',
+    rules.artistPUT_VRS(),
+    validate,
+    artistsController.updateArtistById);
 
 /**
  * @swagger
