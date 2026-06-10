@@ -64,6 +64,7 @@
 const express = require('express');
 const router = express.Router();
 const { validate, rules } = require('../middleware/validator');
+const {isAuthenticated} = require('../middleware/authenicate')
 
 const songsController = require('../controllers/songs');
 
@@ -116,6 +117,7 @@ router.get('/:id', songsController.getSongById);
  *         description: Song not created
  */
 router.post('/',
+    isAuthenticated,
     rules.songPOSTValidationRules(),
     validate,
     songsController.createSong);
@@ -143,6 +145,7 @@ router.post('/',
  *         description: Song not updated
  */
 router.put('/:id',
+    isAuthenticated,
     rules.songPUTValidationRules(),
     validate,
     songsController.updateSongById);
@@ -163,6 +166,6 @@ router.put('/:id',
  *       500:
  *          description: An error occurred while attempting to delete the song
  */
-router.delete('/:id', songsController.deleteSongById);
+router.delete('/:id', isAuthenticated, songsController.deleteSongById);
 
 module.exports = router;

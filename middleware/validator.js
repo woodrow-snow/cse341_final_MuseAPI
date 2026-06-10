@@ -248,6 +248,8 @@ rules.artistPUT_VRS = () => {
     ];
 }
 
+// will complete validation rules one 3rd and 4th collections are finished
+
 const validate = (req, res, next) => {
     const errors = validationResult(req);
     if (errors.isEmpty()) {
