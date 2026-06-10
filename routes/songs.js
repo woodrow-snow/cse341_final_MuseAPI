@@ -63,6 +63,7 @@
  * *********************************************** */
 const express = require('express');
 const router = express.Router();
+const { validate, rules } = require('../middleware/validator');
 
 const songsController = require('../controllers/songs');
 
@@ -114,7 +115,10 @@ router.get('/:id', songsController.getSongById);
  *       500:
  *         description: Song not created
  */
-router.post('/', songsController.createSong);
+router.post('/',
+    rules.songPOSTValidationRules(),
+    validate,
+    songsController.createSong);
 
 /**
  * @swagger
@@ -138,7 +142,10 @@ router.post('/', songsController.createSong);
  *       500:
  *         description: Song not updated
  */
-router.put('/:id', songsController.updateSongById);
+router.put('/:id',
+    rules.songPUTValidationRules(),
+    validate,
+    songsController.updateSongById);
 
 /**
  * @swagger
