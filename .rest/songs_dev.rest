@@ -29,3 +29,31 @@ Content-Type: application/json
     "name": "Bohemian Rhapsody"
 }
 ###
+
+# testing put and post validation
+get http://localhost:3000/song
+###
+
+
+put http://localhost:3000/song/6a279d02756a7fcd0b119727
+Content-Type: application/json
+
+{
+    "name": ""
+}
+###
+
+post http://localhost:3000/song/
+Content-Type: application/json
+
+{
+    "_id":"",
+    "name": "",
+    "len_in_sec": "",
+    "len_in_min": "",
+    "artist_id": "",
+    "album_id": "",
+    "playlist_in": ""
+}
+
+###
