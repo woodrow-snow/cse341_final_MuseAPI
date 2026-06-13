@@ -248,6 +248,92 @@ rules.artistPUT_VRS = () => {
     ];
 }
 
+// after looking over album and playlist, I (Woodorw) noticed that they are identical. Going to use these rules for both.
+rules.albumPOST_VRS = () => {
+    return [
+        body('_id')
+            .optional()
+            .notEmpty()
+            .withMessage('if providing _id, it must not be empty')
+            .isMongoId()
+            .withMessage('_id must be a mongo id'),
+        
+        body('name')
+            .trim()
+            .notEmpty()
+            .withMessage('name must not be empty')
+            .isString()
+            .withMessage('name must be a string'),
+        
+        body('songs')
+            .optional()
+            .notEmpty()
+            .withMessage('If providing songs, please include at least 1 entry')
+            .isArray()
+            .withMessage('songs must be an array'),
+        body('songs.*')
+            .optional()
+            .notEmpty()
+            .withMessage('Songs array must not be empty')
+            .isMongoId()
+            .withMessage('songs id must be MongoID'),
+        
+        body('songs_total')
+            .optional()
+            .notEmpty()
+            .withMessage('songs_total must not be empty')
+            .isInt()
+            .withMessage('songs_total must be an int'),
+        
+        body('total_listen_time_in_sec')
+            .optional()
+            .notEmpty()
+            .withMessage('total_listen_time_in_sec must not be empty')
+            .isInt()
+            .withMessage('total_listen_time_in_sec must be an int'),
+    ]
+}
+
+rules.albumPUT_VRS = () => {
+    return [        
+        body('name')
+            .optional()
+            .trim()
+            .notEmpty()
+            .withMessage('name must not be empty')
+            .isString()
+            .withMessage('name must be a string'),
+        
+        body('songs')
+            .optional()
+            .notEmpty()
+            .withMessage('If providing songs, please include at least 1 entry')
+            .isArray()
+            .withMessage('songs must be an array'),
+        body('songs.*')
+            .optional()
+            .notEmpty()
+            .withMessage('Songs array must not be empty')
+            .isMongoId()
+            .withMessage('songs id must be MongoID'),
+        
+        body('songs_total')
+            .optional()
+            .notEmpty()
+            .withMessage('songs_total must not be empty')
+            .isInt()
+            .withMessage('songs_total must be an int'),
+        
+        body('total_listen_time_in_sec')
+            .optional()
+            .notEmpty()
+            .withMessage('total_listen_time_in_sec must not be empty')
+            .isInt()
+            .withMessage('total_listen_time_in_sec must be an int'),
+    ]
+}
+
+
 // will complete validation rules one 3rd and 4th collections are finished
 
 const validate = (req, res, next) => {
