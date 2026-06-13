@@ -38,5 +38,20 @@ const getAlbumById = async (req, res) => {
     }
 }
 
+const createAlbum = async (req, res) => {
+    try {
+        const newAlbum = await albumModel.createAlbum(req.body);
 
-module.exports = { getAllAlbums, getAlbumById };
+        res.status(201).json({
+            content: newAlbum,
+            message: "Album created successfully."
+        });
+    } catch (error) {
+        res.status(500).json({
+            message: "Failed to create album",
+            error: error.message
+        });
+    }
+};
+
+module.exports = { getAllAlbums, getAlbumById, createAlbum };

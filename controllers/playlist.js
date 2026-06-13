@@ -35,8 +35,24 @@ const getPlaylistById = async (req, res) => {
         });
     }}
 
+const createPlaylist = async (req, res) => {
+    try {
+        const newPlaylist = await playlistModel.createPlaylist(req.body);
+
+        res.status(201).json({
+            content: newPlaylist,
+            message: "Playlist created successfully."
+        });
+    } catch (error) {
+        res.status(500).json({
+            message: "Failed to create playlist",
+            error: error.message
+        });
+    }
+};
 
 module.exports = { 
     getAllPlaylists, 
-    getPlaylistById 
+    getPlaylistById,
+    createPlaylist
 };

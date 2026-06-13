@@ -15,5 +15,13 @@ playlistModel.getPlaylistById = async function (id) {
     return await getDB().findOne({_id: id});
 }
 
+playlistModel.createPlaylist = async function (playlist) {
+    return await getDB().insertOne({
+        name: playlist.name,
+        songs: playlist.songs,
+        songs_total: playlist.songs_total,
+        total_listen_time_in_sec: playlist.total_listen_time_in_sec
+    });
+};
 
 module.exports = { playlistModel };
