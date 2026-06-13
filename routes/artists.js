@@ -52,7 +52,6 @@ const express = require('express');
 const router = express.Router();
 const { validate, rules } = require('../middleware/validator');
 const {isAuthenticated} = require('../middleware/authenicate')
-
 const artistsController = require('../controllers/artists');
 
 /**

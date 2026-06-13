@@ -31,3 +31,6 @@ Content-Type: application/json
     "name": "Queen"
 }
 ###
+
+get http://localhost:3000/artist
+###

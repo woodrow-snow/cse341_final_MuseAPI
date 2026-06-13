@@ -11,6 +11,8 @@ const artistSchema = {
 const artistModel = {};
 const mongo = require('../database/database');
 const getDB = () => {
+    // testing
+    console.log(mongo.getDatabase().db().collection('artist'));
     return mongo.getDatabase().db().collection('artist');
 };
 

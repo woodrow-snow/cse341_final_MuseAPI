@@ -37,3 +37,43 @@ Artist Collection
   ],
   "listeners": 52000000
 }
+
+Album Collection
+[
+  {
+    "_id": "85b2c3d4e5f6a7b8c9d0e1f2",
+    "name": "Thriller",
+    "songs": [
+      "85b2c3d4e5f6a7b8c9d0e1a1",
+      "85b2c3d4e5f6a7b8c9d0e1a2",
+      "85b2c3d4e5f6a7b8c9d0e1a3",
+      "85b2c3d4e5f6a7b8c9d0e1a4",
+      "85b2c3d4e5f6a7b8c9d0e1a5",
+      "85b2c3d4e5f6a7b8c9d0e1a6",
+      "85b2c3d4e5f6a7b8c9d0e1a7",
+      "85b2c3d4e5f6a7b8c9d0e1a8",
+      "85b2c3d4e5f6a7b8c9d0e1a9"
+    ],
+    "songs_total": 9,
+    "total_listen_time_in_sec": 32940
+  },
+  {
+    "_id": "6a2a3a02e50a76a49b91a5b9",
+    "name": "Back in Black",
+    "songs": [
+      "96c3d4e5f6a7b8c9d0e1b1a1",
+      "96c3d4e5f6a7b8c9d0e1b2a2",
+      "96c3d4e5f6a7b8c9d0e1b3a3",
+      "96c3d4e5f6a7b8c9d0e1b4a4",
+      "96c3d4e5f6a7b8c9d0e1b5a5",
+      "96c3d4e5f6a7b8c9d0e1b6a6",
+      "96c3d4e5f6a7b8c9d0e1b7a7",
+      "96c3d4e5f6a7b8c9d0e1b8a8",
+      "96c3d4e5f6a7b8c9d0e1b9a9",
+      "96c3d4e5f6a7b8c9d0e1b0aa"
+    ],
+    "songs_total": 10,
+    "total_listen_time_in_sec": 41280
+  }
+]
+
