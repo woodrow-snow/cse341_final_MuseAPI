@@ -248,6 +248,46 @@ rules.artistPUT_VRS = () => {
     ];
 }
 
+rules.playlistPOST_VRS = () => {
+    return [
+        body('name')
+            .notEmpty()
+            .withMessage('name is required'),
+
+        body('songs')
+            .isArray()
+            .withMessage('songs must be an array'),
+
+        body('songs_total')
+            .isInt()
+            .withMessage('songs_total must be an integer'),
+
+        body('total_listen_time_in_sec')
+            .isInt()
+            .withMessage('total_listen_time_in_sec must be an integer')
+    ];
+};
+
+rules.albumPOST_VRS = () => {
+    return [
+        body('name')
+            .notEmpty()
+            .withMessage('name is required'),
+
+        body('songs')
+            .isArray()
+            .withMessage('songs must be an array'),
+
+        body('songs_total')
+            .isInt()
+            .withMessage('songs_total must be an integer'),
+
+        body('total_listen_time_in_sec')
+            .isInt()
+            .withMessage('total_listen_time_in_sec must be an integer')
+    ];
+};
+
 // will complete validation rules one 3rd and 4th collections are finished
 
 const validate = (req, res, next) => {
