@@ -86,6 +86,8 @@ app.use(
  * *********************************************** */
 app.use('/song', require('./routes/songs'));
 app.use('/artist', require('./routes/artists'));
+app.use('/playlist', require('./routes/playlist'));
+app.use('/album', require('./routes/album'));
 
 app.get('/', (req, res) => {
      res.send(
