@@ -54,4 +54,53 @@ const createAlbum = async (req, res) => {
     }
 };
 
-module.exports = { getAllAlbums, getAlbumById, createAlbum };
+/* ***********************************************
+ * Update Album by ID
+ * *********************************************** */
+const updateAlbumById = async (req, res) => {
+    const id = new ObjectId(req.params.id);
+    
+    try {
+        const updatedAlbum = {
+            "name": req.body.name,
+            "songs": req.body.songs,
+            "songs_total": req.body.songs_total,
+            "total_listen_time_in_sec": req.body.total_listen_time_in_sec
+        }
+
+        const results = await albumModel.updateAlbumById(id, updatedAlbum);
+        res.status(200).send(results); 
+
+    } catch (err) {
+        res.status(500).json({
+            message: 'An error has occurred while attempting to update the album.',
+            error: err.message
+        });
+    }
+}
+
+/* ***********************************************
+ * Delete Album by ID
+ * *********************************************** */
+const deleteAlbumById = async (req, res) => {
+    try {
+        // getting id from params
+        const id = new ObjectId(req.params.id);
+
+        // passing to model to delete album
+        const results = await albumModel.deleteAlbumById(id);
+
+        if (results.deletedCount > 0) {
+            res.status(200).json({ message: 'Album deleted successfully.' });
+        } else {
+            res.status(404).json({ message: 'Album not found.' });
+        }
+    } catch (err) {
+        res.status(500).json({
+            message: 'An error has occurred while attempting to delete the album.',
+            error: err.message
+        });
+    }
+};
+
+module.exports = { getAllAlbums, getAlbumById, createAlbum, updateAlbumById, deleteAlbumById };

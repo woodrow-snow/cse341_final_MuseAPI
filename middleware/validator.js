@@ -144,6 +144,9 @@ rules.songPUTValidationRules = () => {
     ];
 }
 
+/* ***********************************************
+ * Artist rules
+ * *********************************************** */
 rules.artistPOST_VRS = () => {
     return [
         body('_id')
@@ -248,6 +251,9 @@ rules.artistPUT_VRS = () => {
     ];
 }
 
+/* ***********************************************
+ * Playlist rules
+ * *********************************************** */
 rules.playlistPOST_VRS = () => {
     return [
         body('name')
@@ -268,6 +274,36 @@ rules.playlistPOST_VRS = () => {
     ];
 };
 
+rules.playlistPUT_VRS = () => {
+    return [
+        body('name')
+            .optional()
+            .trim()
+            .notEmpty()
+            .withMessage('name must not be empty')
+            .isString()
+            .withMessage('name must be a string'),
+
+        body('songs')
+            .optional()
+            .isArray()
+            .withMessage('songs must be an array'),
+
+        body('songs_total')
+            .optional()
+            .isInt()
+            .withMessage('songs_total must be an integer'),
+
+        body('total_listen_time_in_sec')
+            .optional()
+            .isInt()
+            .withMessage('total_listen_time_in_sec must be an integer')
+    ];
+};
+
+/* ***********************************************
+ * Album rules
+ * *********************************************** */
 rules.albumPOST_VRS = () => {
     return [
         body('name')
@@ -288,8 +324,36 @@ rules.albumPOST_VRS = () => {
     ];
 };
 
-// will complete validation rules one 3rd and 4th collections are finished
+rules.albumPUT_VRS = () => {
+    return [
+        body('name')
+            .optional()
+            .trim()
+            .notEmpty()
+            .withMessage('name must not be empty')
+            .isString()
+            .withMessage('name must be a string'),
 
+        body('songs')
+            .optional()
+            .isArray()
+            .withMessage('songs must be an array'),
+
+        body('songs_total')
+            .optional()
+            .isInt()
+            .withMessage('songs_total must be an integer'),
+
+        body('total_listen_time_in_sec')
+            .optional()
+            .isInt()
+            .withMessage('total_listen_time_in_sec must be an integer')
+    ];
+};
+
+/* ***********************************************
+ * Validate Middleware
+ * *********************************************** */
 const validate = (req, res, next) => {
     const errors = validationResult(req);
     if (errors.isEmpty()) {
