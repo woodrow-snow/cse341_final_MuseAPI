@@ -110,4 +110,50 @@ router.post(
     playlistController.createPlaylist
 );
 
+/**
+ * @swagger
+ * /playlist/{id}:
+ *   put:
+ *     summary: Update a playlist
+ *     tags: [Playlist]
+ *     parameters:
+ *      - in: path
+ *        name: id
+ *        required: true
+ *     requestBody:
+ *       required: true
+ *       content:
+ *          application/json: 
+ *              schema:
+ *                  $ref: '#/components/schemas/Playlist'
+ *     responses:
+ *       200:
+ *         description: Success
+ *       500:
+ *         description: Playlist not updated
+ */
+router.put('/:id',
+    isAuthenticated,
+    rules.playlistPUT_VRS(),
+    validate,
+    playlistController.updatePlaylistById);
+
+/**
+ * @swagger
+ * /playlist/{id}:
+ *   delete:
+ *     summary: Delete a playlist
+ *     tags: [Playlist]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *     responses:
+ *       200:
+ *          description: Playlist was deleted
+ *       500:
+ *          description: An error occurred while attempting to delete the playlist
+ */
+router.delete('/:id', isAuthenticated, playlistController.deletePlaylistById);
+
 module.exports = router;

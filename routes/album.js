@@ -109,4 +109,51 @@ router.post(
     albumController.createAlbum
 );
 
+/**
+ * @swagger
+ * /album/{id}:
+ *   put:
+ *     summary: Update an album
+ *     tags: [Album]
+ *     parameters:
+ *      - in: path
+ *        name: id
+ *        required: true
+ *     requestBody:
+ *       required: true
+ *       content:
+ *          application/json: 
+ *              schema:
+ *                  $ref: '#/components/schemas/Album'
+ *     responses:
+ *       200:
+ *         description: Success
+ *       500:
+ *         description: Album not updated
+ */
+router.put('/:id',
+    isAuthenticated,
+    rules.albumPUT_VRS(),
+    validate,
+    albumController.updateAlbumById);
+
+
+/**
+ * @swagger
+ * /album/{id}:
+ *   delete:
+ *     summary: Delete an album
+ *     tags: [Album]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *     responses:
+ *       200:
+ *          description: Album was deleted
+ *       500:
+ *          description: An error occurred while attempting to delete the album
+ */
+router.delete('/:id', isAuthenticated, albumController.deleteAlbumById);
+
 module.exports = router;
