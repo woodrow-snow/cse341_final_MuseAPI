@@ -8,17 +8,10 @@ rules.songPOSTValidationRules = () => {
     return [
         body('_id')
             .optional()
-            .isObject()
-            .withMessage('_id must be an json object')
+            .isMongoId()
+            .withMessage('_id oid must be a MongoId')
             .notEmpty()
             .withMessage('_id must not be empty'),
-        body('_id.$oid')
-            .optional()
-            .trim()
-            .notEmpty()
-            .withMessage('_id oid must not be empty')
-            .isMongoId()
-            .withMessage('_id oid must be a MongoId'),
         
         body('name')
             .trim()
@@ -41,24 +34,12 @@ rules.songPOSTValidationRules = () => {
         body('artist_id')
             .notEmpty()
             .withMessage('artist_id must not be empty')
-            .isObject()
-            .withMessage('artist_id must be a json object'),
-        body('artist_id.$oid')
-            .trim()
-            .notEmpty()
-            .withMessage('artist_id oid must not be empty')
             .isMongoId()
             .withMessage('artist_id oid must be a MongoId'),
         
         body('album_id')
             .notEmpty()
             .withMessage('album_id must not be empty')
-            .isObject()
-            .withMessage('album_id must be a json object'),
-        body('album_id.$oid')
-            .trim()
-            .notEmpty()
-            .withMessage('album_id oid must not be empty')
             .isMongoId()
             .withMessage('album_id oid must be a MongoId'),
         
@@ -151,8 +132,6 @@ rules.artistPOST_VRS = () => {
     return [
         body('_id')
             .optional()
-            .isObject()
-            .withMessage('_id must be an json object')
             .notEmpty()
             .withMessage('_id must not be empty')
             .isMongoId()
@@ -182,12 +161,6 @@ rules.artistPOST_VRS = () => {
         body('album')
             .notEmpty()
             .withMessage('album must not be empty')
-            .isObject()
-            .withMessage('album must be a json object'),
-        body('album.$oid')
-            .trim()
-            .notEmpty()
-            .withMessage('album oid must not be empty')
             .isMongoId()
             .withMessage('album oid must be a MongoId'),
         
