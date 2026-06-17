@@ -155,11 +155,6 @@ rules.artistPOST_VRS = () => {
             .withMessage('_id must be an json object')
             .notEmpty()
             .withMessage('_id must not be empty'),
-        body('_id.$oid')
-            .optional()
-            .trim()
-            .notEmpty()
-            .withMessage('_id oid must not be empty')
             .isMongoId()
             .withMessage('_id oid must be a MongoId'),
         
