@@ -85,13 +85,6 @@ rules.songPUTValidationRules = () => {
             .optional()
             .notEmpty()
             .withMessage('artist_id must not be empty')
-            .isObject()
-            .withMessage('artist_id must be a json object'),
-        body('artist_id.$oid')
-            .optional()
-            .trim()
-            .notEmpty()
-            .withMessage('artist_id oid must not be empty')
             .isMongoId()
             .withMessage('artist_id oid must be a MongoId'),
         
@@ -99,13 +92,6 @@ rules.songPUTValidationRules = () => {
             .optional()
             .notEmpty()
             .withMessage('album_id must not be empty')
-            .isObject()
-            .withMessage('album_id must be a json object'),
-        body('album_id.$oid')
-            .optional()
-            .trim()
-            .notEmpty()
-            .withMessage('album_id oid must not be empty')
             .isMongoId()
             .withMessage('album_id oid must be a MongoId'),
         
