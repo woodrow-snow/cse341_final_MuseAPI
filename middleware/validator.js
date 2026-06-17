@@ -186,13 +186,6 @@ rules.artistPUT_VRS = () => {
             .optional()
             .notEmpty()
             .withMessage('album must not be empty')
-            .isObject()
-            .withMessage('album must be a json object'),
-        body('album.$oid')
-            .optional()
-            .trim()
-            .notEmpty()
-            .withMessage('album oid must not be empty')
             .isMongoId()
             .withMessage('album oid must be a MongoId'),
         
